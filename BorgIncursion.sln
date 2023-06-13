@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BorgIncursion", "BorgIncursion\BorgIncursion.csproj", "{5DD9B06F-DD6B-49ED-A432-0C2AB61CF6D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BorgIncursion.Tests", "BorgIncursion.Tests\BorgIncursion.Tests.csproj", "{F956DD7B-0D65-4E6A-B065-785324BFCC08}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5DD9B06F-DD6B-49ED-A432-0C2AB61CF6D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DD9B06F-DD6B-49ED-A432-0C2AB61CF6D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DD9B06F-DD6B-49ED-A432-0C2AB61CF6D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DD9B06F-DD6B-49ED-A432-0C2AB61CF6D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F956DD7B-0D65-4E6A-B065-785324BFCC08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F956DD7B-0D65-4E6A-B065-785324BFCC08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F956DD7B-0D65-4E6A-B065-785324BFCC08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F956DD7B-0D65-4E6A-B065-785324BFCC08}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
