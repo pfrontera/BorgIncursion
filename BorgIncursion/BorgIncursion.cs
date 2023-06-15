@@ -4,6 +4,8 @@ namespace BorgIncursion;
 
 public static class BorgIncursion
 {
+    //TODO : Redocumentar els métodes
+    
     /// <summary>
     /// Resistance is futile! Extracts an internal class and returns the Type. Also provides an instance of the class.
     /// </summary>
@@ -39,8 +41,44 @@ public static class BorgIncursion
     /// <param name="method">The method information to invoke.</param>
     /// <param name="parameters">The parameters for the method invocation.</param>
     /// <returns>The result of the Cthulhu's invocation converted to the specified type.</returns>
-    public static T NeuralInvokeAs<T>(this object instance, MethodInfo method, params object[] parameters) =>
-        (T)method!.Invoke(instance, parameters)!;
+    public static T NeuralInvokeAs<T>(this Type type, object instance, string methodName, params object[] parameters)
+    {
+        var method = GetMethod(type, methodName);
+        return (T)method!.Invoke(instance, parameters)!;
+    }
+        
+    
+    public static T NeuralInvokeAs<T, TOut>(this Type type, object instance, string methodName, out TOut outParam, params object[] parameters)
+    {
+        var method = type.CollectMethod(methodName);
+        parameters = parameters.Append(null).ToArray();
+        var result = (T)method!.Invoke(instance, parameters);
+        outParam = (TOut)parameters.Last();
+        return result;
+    }
+
+    public static MethodInfo CollectMethod(this Type type, string methodName)
+    {
+        var methodWithoutDefinedParams = type.GetMethod(methodName);
+        var parameters = methodWithoutDefinedParams.GetParameters();
+        var types = new Type[parameters.Length];
+        
+        for (var i = 0; i < parameters.Length; i++)
+        {
+            if (parameters[i].IsOut)
+            {
+                types[i] = parameters[i].ParameterType.GetElementType().MakeByRefType();
+            }
+            else
+            {
+                types[i] = parameters[i].ParameterType;
+            }
+        }
+        var methodWithDefinedParams = type.GetMethod(methodName,types);
+
+        return methodWithDefinedParams;
+    }
+
     
     /// <summary>
     /// Asks to the borg sphere for a method with the specified name on the given type.
@@ -48,7 +86,7 @@ public static class BorgIncursion
     /// <param name="type">The type on which to search for the method.</param>
     /// <param name="methodName">The name of the method to search for.</param>
     /// <returns>The MethodInfo object representing the method, or null if not found.</returns>
-    public static MethodInfo? CollectMethod(this Type type, string methodName) =>
+    private static MethodInfo? GetMethod(this Type type, string methodName) =>
         type!.GetMethod(methodName, BindingFlags.Instance | BindingFlags.Public);
 }
 
@@ -62,8 +100,15 @@ internal class Locutus
     {
         _message = message;
     }
+    
     public int Add(int a, int b)
     {
+        return a + b;
+    }
+    
+    public int AddWithOut(int a, int b, out string message)
+    {
+        message = "Resistance is futile!";
         return a + b;
     }
 }
