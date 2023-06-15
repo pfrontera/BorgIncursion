@@ -10,7 +10,7 @@ public class BorgIncursionShould : IDisposable
 
     public BorgIncursionShould()
     {
-        _assimilatedType = BorgIncursion.Assimilate("BorgIncursion.Locutus", out _droneBorg);
+        _droneBorg = BorgIncursion.Assimilate("BorgIncursion.Locutus", out _assimilatedType);
     }
     
     public void Dispose() => GC.SuppressFinalize(this);
@@ -31,12 +31,12 @@ public class BorgIncursionShould : IDisposable
     public void Assimilate_and_return_new_instance_as_borg_drone_passing_params_to_the_ctor()
     {
         var parameters = new object[]{new {Message = "Resistance is futile!"}} ;
-        BorgIncursion.Assimilate("BorgIncursion.Locutus", out var instance,parameters);
+        BorgIncursion.Assimilate("BorgIncursion.Locutus", out var type,parameters);
         
         using (new AssertionScope())
         {
-            instance.Should().NotBeNull();
-            instance.GetType().Name.Should().Be("Locutus");
+            type.Should().NotBeNull();
+            type.GetType().Name.Should().Be("Locutus");
         }
     }
     
@@ -55,26 +55,22 @@ public class BorgIncursionShould : IDisposable
     [Fact]
     public void Invoke_method_from_assimilated_borg_drone_and_returns_result()
     {
-        var result = _assimilatedType.NeuralInvokeAs<int>(_droneBorg,"Add", 2, 3);
+        var result = _droneBorg.Execute<int>("Add", 2, 3);
     
         result.Should().Be(5);
     }
-    
+
     [Fact]
     public void Invoke_method_from_assimilated_borg_drone_and_returns_result_with_out_parameter()
     {
-        var result = _assimilatedType.NeuralInvokeAs<int,string>(_droneBorg,"AddWithOut", out string outParameter,2,3);
+        var result = _droneBorg.Execute<int, string>("AddWithOut", out string outParameter, 2, 3);
 
         using (new AssertionScope())
         {
             result.Should().Be(5);
             outParameter.Should().Be("Resistance is futile!");
         }
-        
     }
-
-    
-    
 }
 
 

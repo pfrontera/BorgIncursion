@@ -14,18 +14,18 @@ public static class BorgIncursion
     /// <param name="instance">An instance of the extracted inner class.</param>
     /// <param name="parameters">parameters to be passed to the constructor</param>
     /// <returns>The Type object representing the extracted inner class.</returns>
-    public static Type Assimilate(string className, out object instance, params object[] parameters)
+    public static object Assimilate(string className, out Type internalType, params object[] parameters)
     {
         var callingAssembly = Assembly.GetCallingAssembly();
         var targetAssembly = className.Split('.').FirstOrDefault();
         var projectReference = callingAssembly.GetReferencedAssemblies()
             .FirstOrDefault(a => a.Name == targetAssembly);
         var outerAssembly = Assembly.LoadFrom($"{projectReference.Name}.dll");
-        var internalType = outerAssembly.GetType(className);
+        internalType = outerAssembly.GetType(className);
 
         var constructor = internalType.GetConstructor(Type.EmptyTypes);
-        instance = constructor.Invoke(IsNullParameters(parameters) ? null : parameters);
-        return internalType;
+        var instance = constructor.Invoke(IsNullParameters(parameters) ? null : parameters);
+        return instance;
     }
 
     private static bool IsNullParameters(object[] parameters)
@@ -41,16 +41,16 @@ public static class BorgIncursion
     /// <param name="method">The method information to invoke.</param>
     /// <param name="parameters">The parameters for the method invocation.</param>
     /// <returns>The result of the Cthulhu's invocation converted to the specified type.</returns>
-    public static T NeuralInvokeAs<T>(this Type type, object instance, string methodName, params object[] parameters)
+    public static T Execute<T>(this object instance, string methodName, params object[] parameters)
     {
-        var method = GetMethod(type, methodName);
+        var method = GetMethod(instance.GetType(), methodName);
         return (T)method!.Invoke(instance, parameters)!;
     }
         
     
-    public static T NeuralInvokeAs<T, TOut>(this Type type, object instance, string methodName, out TOut outParam, params object[] parameters)
+    public static T Execute<T, TOut>(this object instance, string methodName, out TOut outParam, params object[] parameters)
     {
-        var method = type.CollectMethod(methodName);
+        var method = instance.GetType().CollectMethod(methodName);
         parameters = parameters.Append(null).ToArray();
         var result = (T)method!.Invoke(instance, parameters);
         outParam = (TOut)parameters.Last();
