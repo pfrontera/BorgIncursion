@@ -14,14 +14,14 @@ public static class BorgIncursion
     /// <param name="instance">An instance of the extracted inner class.</param>
     /// <param name="parameters">parameters to be passed to the constructor</param>
     /// <returns>The Type object representing the extracted inner class.</returns>
-    public static object Assimilate(string className, out Type internalType, params object[] parameters)
+    public static object Assimilate(string className, params object[] parameters)
     {
         var callingAssembly = Assembly.GetCallingAssembly();
         var targetAssembly = className.Split('.').FirstOrDefault();
         var projectReference = callingAssembly.GetReferencedAssemblies()
             .FirstOrDefault(a => a.Name == targetAssembly);
         var outerAssembly = Assembly.LoadFrom($"{projectReference.Name}.dll");
-        internalType = outerAssembly.GetType(className);
+        var internalType = outerAssembly.GetType(className);
 
         var constructor = internalType.GetConstructor(Type.EmptyTypes);
         var instance = constructor.Invoke(IsNullParameters(parameters) ? null : parameters);
