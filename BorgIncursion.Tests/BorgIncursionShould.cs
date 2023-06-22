@@ -47,6 +47,30 @@ public class BorgIncursionShould : IDisposable
     
         result.Should().Be(5);
     }
+    
+    [Fact]
+    public void Invoke_private_method_from_assimilated_borg_drone_and_returns_result()
+    {
+        var result = _droneBorg.Execute<int>("AddPrivate", 2, 3);
+    
+        result.Should().Be(5);
+    }
+    
+    [Fact]
+    public void Invoke_static_method_from_assimilated_borg_drone_and_returns_result()
+    {
+        var result = _droneBorg.Execute<int>("AddStatic", 2, 3);
+    
+        result.Should().Be(5);
+    }
+    
+    [Fact]
+    public void Invoke_private_static_method_from_assimilated_borg_drone_and_returns_result()
+    {
+        var result = _droneBorg.Execute<int>("AddPrivateStatic", 2, 3);
+    
+        result.Should().Be(5);
+    }
 
     [Fact]
     public void Invoke_method_from_assimilated_borg_drone_and_returns_result_with_out_parameter()

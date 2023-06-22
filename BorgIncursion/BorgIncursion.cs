@@ -48,7 +48,11 @@ public static class BorgIncursion
     }
         
     
-    public static T Execute<T, TOut>(this object instance, string methodName, out TOut outParam, params object[] parameters)
+    public static T Execute<T, TOut>(
+        this object instance, 
+        string methodName, 
+        out TOut outParam, 
+        params object[] parameters)
     {
         var method = instance.GetType().CollectMethod(methodName);
         parameters = parameters.Append(null).ToArray();
@@ -86,8 +90,11 @@ public static class BorgIncursion
     /// <param name="type">The type on which to search for the method.</param>
     /// <param name="methodName">The name of the method to search for.</param>
     /// <returns>The MethodInfo object representing the method, or null if not found.</returns>
-    private static MethodInfo? GetMethod(this Type type, string methodName) =>
-        type!.GetMethod(methodName, BindingFlags.Instance | BindingFlags.Public);
+    private static MethodInfo? GetMethod(
+        this Type type, 
+        string methodName, 
+        BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance) =>
+        type!.GetMethod(methodName, flags);
 }
 
 internal class Locutus
@@ -102,6 +109,21 @@ internal class Locutus
     }
     
     public int Add(int a, int b)
+    {
+        return a + b;
+    }
+    
+    private static int AddPrivateStatic(int a, int b)
+    {
+        return a + b;
+    }
+    
+    public static int AddStatic(int a, int b)
+    {
+        return a + b;
+    }
+    
+    private int AddPrivate(int a, int b)
     {
         return a + b;
     }
