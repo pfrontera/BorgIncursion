@@ -4,16 +4,15 @@ namespace BorgIncursion;
 
 public static class BorgIncursion
 {
-    //TODO : Redocumentar els métodes
+    //TODO : continuar redocumentant els métodes
     
     /// <summary>
     /// Resistance is futile! Extracts an internal class and returns the Type. Also provides an instance of the class.
     /// </summary>
     /// <param name="className">The fully qualified name of the inner class.
     /// Example of a namespace `CNN.Cancel.Operations.CancelOperation`</param>
-    /// <param name="instance">An instance of the extracted inner class.</param>
     /// <param name="parameters">parameters to be passed to the constructor</param>
-    /// <returns>The Type object representing the extracted inner class.</returns>
+    /// <returns>An instance of the Type object representing the extracted inner class.</returns>
     public static object Assimilate(string className, params object[] parameters)
     {
         var callingAssembly = Assembly.GetCallingAssembly();
@@ -28,26 +27,33 @@ public static class BorgIncursion
         return instance;
     }
 
-    private static bool IsNullParameters(object[] parameters)
-    {
-        return parameters is object[] && parameters.Length == 0;
-    }
 
     /// <summary>
-    /// Invokes a method using reflection and returns the result as the specified type.
+    /// Extension method that invokes a method using reflection and returns the result as the specified type.
     /// </summary>
     /// <typeparam name="T">The type to which the invocation result will be converted.</typeparam>
     /// <param name="instance">The instance on which to invoke the method.</param>
     /// <param name="method">The method information to invoke.</param>
     /// <param name="parameters">The parameters for the method invocation.</param>
-    /// <returns>The result of the Cthulhu's invocation converted to the specified type.</returns>
+    /// <returns>The result of the Borgs execution converted to the specified type.</returns>
     public static T Execute<T>(this object instance, string methodName, params object[] parameters)
     {
         var method = GetMethod(instance.GetType(), methodName);
         return (T)method!.Invoke(instance, parameters)!;
     }
-        
-    
+
+
+    /// <summary>
+    /// Extension method that invokes a method using reflection and returns the result as the specified type with an
+    /// out parameter.
+    /// </summary>
+    /// <typeparam name="T">The type to which the invocation result will be converted.</typeparam>
+    /// <typeparam name="TOut">The type of the out param</typeparam>
+    /// <param name="instance">The instance on which to invoke the method.</param>
+    /// <param name="methodName">The method information to invoke.</param>
+    /// <param name="outParam">The out param that will return the method.</param>
+    /// <param name="parameters">The parameters for the method invocation.</param>
+    /// <returns>The result of the Borgs execution converted to the specified type.</returns>
     public static T Execute<T, TOut>(
         this object instance, 
         string methodName, 
@@ -61,7 +67,41 @@ public static class BorgIncursion
         return result;
     }
 
-    public static MethodInfo CollectMethod(this Type type, string methodName)
+    
+    /// <summary>
+    /// Extension method that invokes a method using reflection and returns the result as the specified type with an
+    /// out parameter.
+    /// </summary>
+    /// <typeparam name="T">The type to which the invocation result will be converted.</typeparam>
+    /// <param name="instance">The instance on which to invoke the method.</param>
+    /// <param name="methodName">The method information to invoke.</param>
+    /// <param name="outParams">The out params that will return the method. You must know the type of the out params in
+    /// order to iterate the object array of out params</param>
+    /// <param name="parameters">The parameters for the method invocation.</param>
+    /// <returns>The result of the Borgs execution converted to the specified type.</returns>
+    public static T Execute<T>(this object instance, string methodName, out object[] outParams,
+        params object[] parameters)
+    {
+        var method = instance.GetType().CollectMethod(methodName);
+        var methodParameters = method.GetParameters();
+        var skipParamsCount = parameters.Length;
+
+        foreach (var parameter in methodParameters)
+        {
+            if (parameter.IsOut)
+            {
+                parameters = parameters.Append(null).ToArray();
+            }
+        }
+
+        var result = (T)method.Invoke(instance, parameters);
+
+        outParams = parameters.Skip(skipParamsCount).ToArray();
+        
+        return result;
+    }
+
+    private static MethodInfo CollectMethod(this Type type, string methodName)
     {
         var methodWithoutDefinedParams = type.GetMethod(methodName);
         var parameters = methodWithoutDefinedParams.GetParameters();
@@ -95,6 +135,12 @@ public static class BorgIncursion
         string methodName, 
         BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance) =>
         type!.GetMethod(methodName, flags);
+    
+    
+    private static bool IsNullParameters(object[] parameters)
+    {
+        return parameters is object[] && parameters.Length == 0;
+    }
 }
 
 internal class Locutus
@@ -131,6 +177,13 @@ internal class Locutus
     public int AddWithOut(int a, int b, out string message)
     {
         message = "Resistance is futile!";
+        return a + b;
+    }
+    
+    public int AddWithTwoOuts(int a, int b, out string message, out string message2)
+    {
+        message = "Resistance is futile!";
+        message2 = "I sell opel corsa";
         return a + b;
     }
 }

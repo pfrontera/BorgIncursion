@@ -83,6 +83,19 @@ public class BorgIncursionShould : IDisposable
             outParameter.Should().Be("Resistance is futile!");
         }
     }
+    
+    [Fact]
+    public void Invoke_method_from_assimilated_borg_drone_and_returns_result_with_two_out_parameter()
+    {
+        var result = _droneBorg.Execute<int>("AddWithTwoOuts", out  var outParams, 2, 3);
+
+        using (new AssertionScope())
+        {
+            result.Should().Be(5);
+            outParams[0].Should().Be("Resistance is futile!");
+            outParams[1].Should().Be("I sell opel corsa");
+        }
+    }
 }
 
 
