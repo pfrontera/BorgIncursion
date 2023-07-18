@@ -20,8 +20,8 @@ public static class BorgIncursion
     {
         var outerAssembly = Assembly.LoadFrom($"{assemblyName}.dll");
         var internalType = outerAssembly.GetType(className);
-
-        var constructor = internalType.GetConstructor(Type.EmptyTypes);
+        var parameterTypes = parameters.Select(p => (Type)p.GetType()).ToArray();
+        var constructor = internalType.GetConstructor(parameterTypes);
         var instance = constructor.Invoke(IsNullParameters(parameters) ? null : parameters);
         return instance;
     }
