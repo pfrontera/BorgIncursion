@@ -10,7 +10,7 @@ public class BorgIncursionShould : IDisposable
 
     public BorgIncursionShould()
     {
-        _droneBorg = BorgIncursion.Assimilate("BorgIncursion.Locutus");
+        _droneBorg = BorgIncursion.Assimilate("BorgIncursion","BorgIncursion.Locutus");
     }
     
     public void Dispose() => GC.SuppressFinalize(this);
@@ -31,7 +31,7 @@ public class BorgIncursionShould : IDisposable
     public void Assimilate_and_return_new_instance_as_borg_drone_passing_params_to_the_ctor()
     {
         var parameters = new object[]{new {Message = "Resistance is futile!"}} ;
-        var sut = BorgIncursion.Assimilate("BorgIncursion.Locutus", parameters);
+        var sut = BorgIncursion.Assimilate("BorgIncursion","BorgIncursion.Locutus", parameters);
         
         using (new AssertionScope())
         {

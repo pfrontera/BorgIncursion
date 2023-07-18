@@ -6,20 +6,19 @@ public static class BorgIncursion
 {
     //TODO : continuar redocumentant els métodes
     
+    //TODO : Preveure excepcions i nulls per a donar informació en cas de malfuncionament.
+
     /// <summary>
     /// Resistance is futile! Extracts an internal class and returns the Type. Also provides an instance of the class.
     /// </summary>
+    /// <param name="assemblyName">The name of the dll</param>
     /// <param name="className">The fully qualified name of the inner class.
     /// Example of a namespace `CNN.Cancel.Operations.CancelOperation`</param>
     /// <param name="parameters">parameters to be passed to the constructor</param>
     /// <returns>An instance of the Type object representing the extracted inner class.</returns>
-    public static object Assimilate(string className, params object[] parameters)
+    public static object Assimilate(string assemblyName, string className, params object[] parameters)
     {
-        var callingAssembly = Assembly.GetCallingAssembly();
-        var targetAssembly = className.Split('.').FirstOrDefault();
-        var projectReference = callingAssembly.GetReferencedAssemblies()
-            .FirstOrDefault(a => a.Name == targetAssembly);
-        var outerAssembly = Assembly.LoadFrom($"{projectReference.Name}.dll");
+        var outerAssembly = Assembly.LoadFrom($"{assemblyName}.dll");
         var internalType = outerAssembly.GetType(className);
 
         var constructor = internalType.GetConstructor(Type.EmptyTypes);
