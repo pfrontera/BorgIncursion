@@ -5,9 +5,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>Borg</AssemblyName>
+    <PackageTags>reflection</PackageTags>
     <PackageId>borg-incursion</PackageId>
     <Authors>Pere Frontera</Authors>
-    <Version>1.10.3</Version>
+    <Version>1.10.4</Version>
     <RepositoryUrl>https://github.com/pfrontera/BorgIncursion</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/pfrontera/BorgIncursion</PackageProjectUrl>

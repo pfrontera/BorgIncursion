@@ -1,5 +1,5 @@
 # BorgIncursion
-<img src="./BorgIncursion/assets/logo.png" alt="BorgIncursion Logo" width="200"/>
+![BorgIncursion Logo](https://github.com/pfrontera/BorgIncursion/blob/main/BorgIncursion/assets/logo.png)
 
 ## [English](#English) | [Català](#català) 
 
@@ -8,7 +8,7 @@
 ### English
 Resistance is futile! Extract internal classes and assimilate a new instance for your own use.
 
-BorgIncursion is a static library in C# that provides a way to interact with internal classes of an assembly. It allows you to extract an internal class and create a new instance of it for your own use. This can be particularly useful when you need to test or interact with internal classes that are not normally accessible.
+BorgIncursion is a library in C# that provides a way to interact with internal classes of an assembly. It allows you to extract an internal class and create a new instance of it for your own use. This can be particularly useful when you need to test or interact with internal classes that are not normally accessible.
 
 However, it's important to note that BorgIncursion makes use of reflection, which is a powerful but potentially dangerous feature. Reflection allows you to inspect and interact with code dynamically, but it can also lead to code that is hard to understand, difficult to debug, and prone to runtime errors. Therefore, it's recommended to use reflection sparingly and only when absolutely necessary.
 
@@ -23,7 +23,7 @@ BorgIncursion is designed to handle a wide range of use cases. It can reflect on
 Like the Borg assimilated Captain Picard, you can extract an internal class and assimilate it by creating a new instance of it, using the Assimilate method. Here is an example:
 
 ```csharp
-var instance = BorgIncursion.Assimilate("MyAssembly", "MyNamespace.MyClass");
+var instance = Borg.Assimilate("MyAssembly", "MyNamespace.MyClass");
 ```
 In this example, `MyAssembly` is the name of the assembly that contains the internal class, and `MyNamespace.MyClass` is the fully qualified name of the internal class.
 
@@ -58,7 +58,7 @@ You must know the type of the out params in order to iterate the object array of
 # BorgIncursion
 La resistència és fútil! Extreu classes internes i assimila una nova instància per al teu ús.
 
-BorgIncursion és una biblioteca estàtica en C# que proporciona una manera d'interactuar amb classes internes d'una assemblatge. Et permet extreure una classe interna i crear una nova instància d'aquesta per al teu ús. Això pot ser particularment útil quan necessites provar o interactuar amb classes internes que normalment no són accessibles.
+BorgIncursion és una llibreria en C# que proporciona una manera d'interactuar amb classes internes d'una assemblatge. Et permet extreure una classe interna i crear una nova instància d'aquesta per al teu ús. Això pot ser particularment útil quan necessites provar o interactuar amb classes internes que normalment no són accessibles.
 
 No obstant això, és important destacar que BorgIncursion fa ús de la reflexió, que és una característica potent però potencialment perillosa. La reflexió et permet inspeccionar i interactuar amb el codi de manera dinàmica, però també pot portar a codi que és difícil d'entendre, difícil de depurar i propens a errors en temps d'execució. Per tant, es recomana utilitzar la reflexió amb moderació i només quan sigui absolutament necessari.
 
@@ -73,7 +73,7 @@ BorgIncursion està dissenyat per a manejar una àmplia gamma de casos d'ús. Po
 Com els Borg van assimilar al Capità Picard, pots extreure una classe interna i assimilar-la creant una nova instància d'aquesta, utilitzant el mètode Assimilate. Aquí tens un exemple:
 
 ```csharp
-var instance = BorgIncursion.Assimilate("MyAssembly", "MyNamespace.MyClass");
+var instance = Borg.Assimilate("MyAssembly", "MyNamespace.MyClass");
 ```  
 En aquest exemple, `MyAssembly` és el nom de l'assemblatge que conté la classe interna, i `MyNamespace.MyClass` és el nom completament qualificat de la classe interna.
 
@@ -107,9 +107,7 @@ Has de saber el tipus dels paràmetres de sortida per poder iterar l'array d'obj
  
 ----- 
 
-<p style="text-align:center;">
-  <img src="./BorgIncursion/assets/readme.jpg" alt="Locutus of Borg coding" width="1024"/>
-</p> 
+![BorgIncursion Readme](https://github.com/pfrontera/BorgIncursion/blob/main/BorgIncursion/assets/readme.jpg)
 <p style="text-align:center;">
   <i>*Locutus of borg will keep updating...Testing is not futile. It ensures the perfection of assimilated code.*</i>
 </p>

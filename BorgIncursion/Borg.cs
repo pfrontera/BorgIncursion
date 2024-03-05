@@ -1,7 +1,8 @@
 ﻿using System.Reflection;
 
+namespace BorgIncursion;
 
-public static class BorgIncursion
+public static class Borg
 {
     /// <summary>
     /// Resistance is futile! Extracts an internal class and returns the Type. Also provides an instance of the class.
@@ -26,7 +27,7 @@ public static class BorgIncursion
         try
         {
             var outerAssembly = Assembly.LoadFrom($"{assemblyName}.dll");
-            var internalType = outerAssembly.GetType(className);
+            var internalType = outerAssembly.GetTypes().FirstOrDefault(t => t.Name == className && t.IsNotPublic);
             if (internalType == null)
             {
                 throw new Exception($"The class {className} was not found in the assembly {assemblyName}.dll");
