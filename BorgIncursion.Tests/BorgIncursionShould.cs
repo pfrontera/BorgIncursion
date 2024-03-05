@@ -10,7 +10,7 @@ public class BorgIncursionShould : IDisposable
 
     public BorgIncursionShould()
     {
-        _droneBorg = BorgIncursion.Assimilate("BorgIncursion","BorgIncursion.Locutus");
+        _droneBorg = BorgIncursion.Assimilate("BorgIncursion","BorgIncursion.LocutusOfBorg");
     }
     
     public void Dispose() => GC.SuppressFinalize(this);
@@ -23,7 +23,7 @@ public class BorgIncursionShould : IDisposable
         using (new AssertionScope())
         {
             instance.Should().NotBeNull();
-            instance.GetType().Name.Should().Be("Locutus");
+            instance.GetType().Name.Should().Be("LocutusOfBorg");
         }
     }
     
@@ -31,12 +31,12 @@ public class BorgIncursionShould : IDisposable
     public void Assimilate_and_return_new_instance_as_borg_drone_passing_params_to_the_ctor()
     {
         var parameters = new object[]{"Resistance is futile!"} ;
-        var sut = BorgIncursion.Assimilate("BorgIncursion","BorgIncursion.Locutus", parameters);
+        var sut = BorgIncursion.Assimilate("BorgIncursion","BorgIncursion.LocutusOfBorg", parameters);
         
         using (new AssertionScope())
         {
             sut.GetType().Should().NotBeNull();
-            sut.GetType().Name.Should().Be("Locutus");
+            sut.GetType().Name.Should().Be("LocutusOfBorg");
         }
     }
 
@@ -83,11 +83,11 @@ public class BorgIncursionShould : IDisposable
             outParameter.Should().Be("Resistance is futile!");
         }
     }
-    
+
     [Fact]
     public void Invoke_method_from_assimilated_borg_drone_and_returns_result_with_two_out_parameter()
     {
-        var result = _droneBorg.Execute<int>("AddWithTwoOuts", out  var outParams, 2, 3);
+        var result = _droneBorg.Execute<int>("AddWithTwoOuts", out var outParams, 2, 3);
 
         using (new AssertionScope())
         {
@@ -95,6 +95,45 @@ public class BorgIncursionShould : IDisposable
             outParams[0].Should().Be("Resistance is futile!");
             outParams[1].Should().Be("I sell opel corsa");
         }
+    }
+    
+    [Fact]
+    public void Throw_ArgumentException_When_AssemblyName_Is_Null_Or_Empty()
+    {
+        Action act = () => BorgIncursion.Assimilate(null, "BorgIncursion.LocutusOfBorg");
+        act.Should().Throw<ArgumentException>().WithMessage("Assembly name cannot be null or empty.");
+
+        act = () => BorgIncursion.Assimilate(string.Empty, "BorgIncursion.LocutusOfBorg");
+        act.Should().Throw<ArgumentException>().WithMessage("Assembly name cannot be null or empty.");
+    }
+
+    [Fact]
+    public void Throw_ArgumentException_When_ClassName_Is_Null_Or_Empty()
+    {
+        Action act = () => BorgIncursion.Assimilate("BorgIncursion", null);
+        act.Should().Throw<ArgumentException>().WithMessage("Class name cannot be null or empty.");
+
+        act = () => BorgIncursion.Assimilate("BorgIncursion", string.Empty);
+        act.Should().Throw<ArgumentException>().WithMessage("Class name cannot be null or empty.");
+    }
+
+    [Fact]
+    public void Throw_InvalidOperationException_When_Class_Does_Not_Exist_In_Assembly()
+    {
+        Assert.Throws<InvalidOperationException>(() => BorgIncursion.Assimilate("BorgIncursion", "NonExistentClass"));
+    }
+
+    [Fact]
+    public void Throw_InvalidOperationException_When_Class_Does_Not_Have_Matching_Constructor()
+    {
+        Assert.Throws<InvalidOperationException>(() => BorgIncursion.Assimilate("BorgIncursion", "BorgIncursion.LocutusOfBorg", new object[] { 123 }));
+    }
+    
+    [Fact]
+    public void Throw_InvalidOperationException_When_Assembly_Does_Not_Exist()
+    {
+        Action act = () => BorgIncursion.Assimilate("NonExistentAssembly", "BorgIncursion.LocutusOfBorg");
+        act.Should().Throw<InvalidOperationException>().WithMessage("An error occurred while trying to assimilate the class.");
     }
 }
 
