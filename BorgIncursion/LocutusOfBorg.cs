@@ -1,6 +1,4 @@
-﻿namespace BorgIncursion;
-
-internal class LocutusOfBorg
+﻿internal class LocutusOfBorg
 {
     private string _message;
     

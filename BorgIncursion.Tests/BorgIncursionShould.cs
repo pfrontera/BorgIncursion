@@ -1,8 +1,6 @@
 using FluentAssertions;
 using FluentAssertions.Execution;
 
-namespace BorgIncursion.Tests;
-
 public class BorgIncursionShould : IDisposable
 {
     private readonly object _droneBorg;
@@ -10,7 +8,7 @@ public class BorgIncursionShould : IDisposable
 
     public BorgIncursionShould()
     {
-        _droneBorg = BorgIncursion.Assimilate("BorgIncursion","BorgIncursion.LocutusOfBorg");
+        _droneBorg = BorgIncursion.Assimilate("Borg","LocutusOfBorg");
     }
     
     public void Dispose() => GC.SuppressFinalize(this);
@@ -31,7 +29,7 @@ public class BorgIncursionShould : IDisposable
     public void Assimilate_and_return_new_instance_as_borg_drone_passing_params_to_the_ctor()
     {
         var parameters = new object[]{"Resistance is futile!"} ;
-        var sut = BorgIncursion.Assimilate("BorgIncursion","BorgIncursion.LocutusOfBorg", parameters);
+        var sut = BorgIncursion.Assimilate("Borg","LocutusOfBorg", parameters);
         
         using (new AssertionScope())
         {
@@ -100,39 +98,39 @@ public class BorgIncursionShould : IDisposable
     [Fact]
     public void Throw_ArgumentException_When_AssemblyName_Is_Null_Or_Empty()
     {
-        Action act = () => BorgIncursion.Assimilate(null, "BorgIncursion.LocutusOfBorg");
+        Action act = () => BorgIncursion.Assimilate(null, "LocutusOfBorg");
         act.Should().Throw<ArgumentException>().WithMessage("Assembly name cannot be null or empty.");
 
-        act = () => BorgIncursion.Assimilate(string.Empty, "BorgIncursion.LocutusOfBorg");
+        act = () => BorgIncursion.Assimilate(string.Empty, "LocutusOfBorg");
         act.Should().Throw<ArgumentException>().WithMessage("Assembly name cannot be null or empty.");
     }
 
     [Fact]
     public void Throw_ArgumentException_When_ClassName_Is_Null_Or_Empty()
     {
-        Action act = () => BorgIncursion.Assimilate("BorgIncursion", null);
+        Action act = () => BorgIncursion.Assimilate("Borg", null);
         act.Should().Throw<ArgumentException>().WithMessage("Class name cannot be null or empty.");
 
-        act = () => BorgIncursion.Assimilate("BorgIncursion", string.Empty);
+        act = () => BorgIncursion.Assimilate("Borg", string.Empty);
         act.Should().Throw<ArgumentException>().WithMessage("Class name cannot be null or empty.");
     }
 
     [Fact]
     public void Throw_InvalidOperationException_When_Class_Does_Not_Exist_In_Assembly()
     {
-        Assert.Throws<InvalidOperationException>(() => BorgIncursion.Assimilate("BorgIncursion", "NonExistentClass"));
+        Assert.Throws<InvalidOperationException>(() => BorgIncursion.Assimilate("Borg", "NonExistentClass"));
     }
 
     [Fact]
     public void Throw_InvalidOperationException_When_Class_Does_Not_Have_Matching_Constructor()
     {
-        Assert.Throws<InvalidOperationException>(() => BorgIncursion.Assimilate("BorgIncursion", "BorgIncursion.LocutusOfBorg", new object[] { 123 }));
+        Assert.Throws<InvalidOperationException>(() => BorgIncursion.Assimilate("Borg", "LocutusOfBorg", new object[] { 123 }));
     }
     
     [Fact]
     public void Throw_InvalidOperationException_When_Assembly_Does_Not_Exist()
     {
-        Action act = () => BorgIncursion.Assimilate("NonExistentAssembly", "BorgIncursion.LocutusOfBorg");
+        Action act = () => BorgIncursion.Assimilate("NonExistentAssembly", "LocutusOfBorg");
         act.Should().Throw<InvalidOperationException>().WithMessage("An error occurred while trying to assimilate the class.");
     }
 }

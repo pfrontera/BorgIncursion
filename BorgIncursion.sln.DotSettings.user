@@ -1,6 +1,5 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=85516a0f_002Dd1b0_002D4157_002D9f55_002D5a3e3577058a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="BorgIncursionShould" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::F956DD7B-0D65-4E6A-B065-785324BFCC08::net7.0::BorgIncursion.Tests.BorgIncursionShould&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=edd935a9_002D8cb6_002D4272_002Da1d7_002Db92ffc69eb6b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Solution /&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

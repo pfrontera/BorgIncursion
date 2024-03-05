@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 
-namespace BorgIncursion;
 
 public static class BorgIncursion
 {
