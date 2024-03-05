@@ -1,5 +1,5 @@
 # BorgIncursion
-<img src="assets/logo.png" alt="BorgIncursion Logo" width="200"/>
+<img src="./BorgIncursion/assets/logo.png" alt="BorgIncursion Logo" width="200"/>
 
 ## [English](#English) | [Català](#català) 
 
@@ -108,7 +108,7 @@ Has de saber el tipus dels paràmetres de sortida per poder iterar l'array d'obj
 ----- 
 
 <p style="text-align:center;">
-  <img src="assets/readme.jpg" alt="Locutus of Borg coding" width="1024"/>
+  <img src="./BorgIncursion/assets/readme.jpg" alt="Locutus of Borg coding" width="1024"/>
 </p> 
 <p style="text-align:center;">
   <i>*Locutus of borg will keep updating...Testing is not futile. It ensures the perfection of assimilated code.*</i>
