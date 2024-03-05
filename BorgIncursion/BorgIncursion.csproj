@@ -5,10 +5,20 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>borg-incursion</PackageId>
-    <PackageIcon>assets/logo.png</PackageIcon>
     <Authors>Pere Frontera</Authors>
     <Version>1.10.0</Version>
     <RepositoryUrl>https://github.com/pfrontera/BorgIncursion</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/pfrontera/BorgIncursion</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <Copyright>Pere Frontera</Copyright>
+    <PackageLicenseExpression>CC BY 4.0</PackageLicenseExpression>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath=""/>
+    <None Include="../LICENSE.txt" Pack="true" PackagePath=""/>
+  </ItemGroup>
 
 </Project>
