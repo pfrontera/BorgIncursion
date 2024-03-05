@@ -12,13 +12,11 @@
     <PackageProjectUrl>https://github.com/pfrontera/BorgIncursion</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
     <Copyright>Pere Frontera</Copyright>
-    <PackageLicenseExpression>CC BY 4.0</PackageLicenseExpression>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageLicenseExpression>CC-BY-4.0</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="../README.md" Pack="true" PackagePath=""/>
-    <None Include="../LICENSE.txt" Pack="true" PackagePath=""/>
   </ItemGroup>
 
 </Project>
