@@ -1,5 +1,5 @@
 # BorgIncursion
-![BorgIncursion Logo](https://github.com/pfrontera/BorgIncursion/blob/main/BorgIncursion/assets/logo.png)
+![BorgIncursion Logo](https://github.com/pfrontera/BorgIncursion/blob/main/assets/logo.png?raw=true)
 
 ## [English](#English) | [Català](#català) 
 
@@ -127,7 +127,7 @@ Has de saber el tipus dels paràmetres de sortida per poder iterar l'array d'obj
  
 ----- 
 
-![BorgIncursion Readme](https://raw.githubusercontent.com/pfrontera/BorgIncursion/main/BorgIncursion/assets/readme.png)
+![BorgIncursion Readme](https://raw.githubusercontent.com/pfrontera/BorgIncursion/main/assets/readme.jpg)
 <p style="text-align:center;">
   <i>*Locutus of borg will keep updating...Testing is not futile. It ensures the perfection of assimilated code.*</i>
 </p>
