@@ -1,5 +1,5 @@
 # BorgIncursion
-![BorgIncursion Logo](https://github.com/pfrontera/BorgIncursion/blob/main/assets/logo.png?raw=true)
+![BorgIncursion Logo](https://raw.githubusercontent.com/pfrontera/BorgIncursion/main/assets/logo.png)
 
 ## [English](#English) | [Català](#català) 
 
