@@ -127,7 +127,7 @@ Has de saber el tipus dels paràmetres de sortida per poder iterar l'array d'obj
  
 ----- 
 
-![BorgIncursion Readme](https://raw.githubusercontent.com/pfrontera/BorgIncursion/main/assets/readme.jpg)
-<p style="text-align:center;">
-  <i>*Locutus of borg will keep updating...Testing is not futile. It ensures the perfection of assimilated code.*</i>
-</p>
+![BorgIncursion Readme](https://raw.githubusercontent.com/pfrontera/BorgIncursion/main/assets/readme.jpg)  
+
+_Locutus of borg will keep updating...Testing is not futile. It ensures the perfection of assimilated code._
+

@@ -9,7 +9,7 @@
     <PackageId>borg-incursion</PackageId>
     <Description>Reflection library for .NET 7.0</Description>
     <Authors>Pere Frontera</Authors>
-    <Version>1.11.0</Version>
+    <Version>1.11.1</Version>
     <RepositoryUrl>https://github.com/pfrontera/BorgIncursion</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/pfrontera/BorgIncursion</PackageProjectUrl>
