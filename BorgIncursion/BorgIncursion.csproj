@@ -7,8 +7,9 @@
     <AssemblyName>Borg</AssemblyName>
     <PackageTags>reflection</PackageTags>
     <PackageId>borg-incursion</PackageId>
+    <Description>Reflection library for .NET 7.0</Description>
     <Authors>Pere Frontera</Authors>
-    <Version>1.10.4</Version>
+    <Version>1.11.0</Version>
     <RepositoryUrl>https://github.com/pfrontera/BorgIncursion</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/pfrontera/BorgIncursion</PackageProjectUrl>
@@ -21,6 +22,12 @@
   <ItemGroup>
     <None Include="../README.md" Pack="true" PackagePath=""/>
     <None Include="./assets/icon.png" Pack="true" PackagePath=""/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\CHANGELOG.md">
+      <Link>CHANGELOG.md</Link>
+    </Content>
   </ItemGroup>
 
 </Project>

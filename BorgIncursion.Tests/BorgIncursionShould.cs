@@ -4,7 +4,7 @@ using FluentAssertions.Execution;
 
 public class BorgIncursionShould : IDisposable
 {
-    private readonly object _droneBorg;
+    private readonly BorgDrone _droneBorg;
     private readonly Type _assimilatedType;
 
     public BorgIncursionShould()
@@ -21,8 +21,8 @@ public class BorgIncursionShould : IDisposable
         
         using (new AssertionScope())
         {
-            instance.Should().NotBeNull();
-            instance.GetType().Name.Should().Be("LocutusOfBorg");
+            _droneBorg.Instance.Should().NotBeNull();
+            _droneBorg.Instance.GetType().Name.Should().Be("LocutusOfBorg");
         }
     }
     
@@ -30,12 +30,53 @@ public class BorgIncursionShould : IDisposable
     public void Assimilate_and_return_new_instance_as_borg_drone_passing_params_to_the_ctor()
     {
         var parameters = new object[]{"Resistance is futile!"} ;
-        var sut = BorgIncursion.Borg.Assimilate("Borg","LocutusOfBorg", parameters);
+        var sut = Borg.Assimilate("Borg","LocutusOfBorg", parameters);
         
         using (new AssertionScope())
         {
-            sut.GetType().Should().NotBeNull();
-            sut.GetType().Name.Should().Be("LocutusOfBorg");
+            sut.Instance.GetType().Should().NotBeNull();
+            sut.Instance.GetType().Name.Should().Be("LocutusOfBorg");
+        }
+    }
+    
+    [Fact]
+    public void Should_have_the_current_properties()
+    {
+        var parameters = new object[]{"Resistance is futile!"} ;
+        var expectedMethods = new List<string>
+        {
+            "Add(int a, int b) -> int",
+            "AddPrivateStatic(int a, int b) -> int",
+            "AddPrivate(int a, int b) -> int",
+            "AddStatic(int a, int b) -> int",
+            "AddWithOut(int a, int b, out string message) -> int",
+            "AddWithTwoOuts(int a, int b, out string message, out string message2) -> int",
+            "GetType() -> Type",
+            "MemberwiseClone() -> Object",
+            "Finalize() -> Void",
+            "ToString() -> string",
+            "Equals(Object obj) -> bool",
+            "GetHashCode() -> int"
+        };
+        var expectedConstructors = new List<string>
+        {
+            ".ctor()",
+            ".ctor(String message)"
+        };
+        var expectedFields = new Dictionary<string, object>
+        {
+            { "Message", "Resistance is futile!" },
+            { "_privateMessage", "We are the Borg. Resistance is futile. Prepare your technology to be assimilated. The " +
+                                 "singularity is near. Resistance is futile. Adaptation is inevitable." }
+        };
+        
+        var sut = Borg.Assimilate("Borg","LocutusOfBorg", parameters);
+
+        using (new AssertionScope())
+        {
+            sut.Methods.Should().BeEquivalentTo(expectedMethods);
+            sut.Constructors.Should().BeEquivalentTo(expectedConstructors);
+            sut.Fields.Should().BeEquivalentTo(expectedFields);
         }
     }
 

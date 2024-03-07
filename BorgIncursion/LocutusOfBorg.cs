@@ -1,12 +1,15 @@
 ﻿internal class LocutusOfBorg
 {
-    private string _message;
+    private string _privateMessage;
+    public string Message;
     
     public LocutusOfBorg(){}
     
     public LocutusOfBorg(string message)
     {
-        _message = message;
+        Message = message;
+        _privateMessage = "We are the Borg. Resistance is futile. Prepare your technology to be assimilated. The " +
+                          "singularity is near. Resistance is futile. Adaptation is inevitable.";
     }
     
     public int Add(int a, int b)
