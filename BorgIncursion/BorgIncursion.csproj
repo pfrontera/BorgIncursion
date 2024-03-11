@@ -6,10 +6,10 @@
     <Nullable>enable</Nullable>
     <AssemblyName>Borg</AssemblyName>
     <PackageTags>reflection</PackageTags>
-    <PackageId>borg-incursion</PackageId>
+    <PackageId>BorgIncursion</PackageId>
     <Description>Reflection library for .NET 7.0</Description>
     <Authors>Pere Frontera</Authors>
-    <Version>1.11.2</Version>
+    <Version>1.11.3</Version>
     <RepositoryUrl>https://github.com/pfrontera/BorgIncursion</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/pfrontera/BorgIncursion</PackageProjectUrl>
